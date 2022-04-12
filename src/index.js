@@ -7,7 +7,7 @@ export default function WeatherWidget({
   apiKey,
   longitude,
   latitude,
-  units
+  units = 'metric'
 }) {
   const {
     color: { font: defFonts, icon: defIcons },

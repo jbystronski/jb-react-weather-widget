@@ -70,7 +70,10 @@ const theme = {
     inner: '16px', // The width, height of gaps between inner elements
     outer: '16px' // padding of the container's element
   },
-  borderRadius: '8px'
+  borderRadius: {
+    container: '8px',
+    element: '8px
+  }
 }
 ```
 

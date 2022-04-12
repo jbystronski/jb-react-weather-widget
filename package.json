@@ -5,6 +5,7 @@
   "author": "jbystronski",
   "license": "MIT",
   "repository": "jbystronski/jb-react-weather-widget",
+  "homepage": "https://jbystronski.github.io/jb-react-weather-widget/",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",

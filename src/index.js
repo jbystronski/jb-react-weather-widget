@@ -2,7 +2,7 @@ import React from 'react'
 import Main from './components/Main'
 import { defaultTheme } from './utils/defaultTheme'
 
-export default function WeatherWidget({
+export function WeatherWidget({
   theme,
   apiKey,
   longitude,

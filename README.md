@@ -27,7 +27,7 @@ Sign up with https://openweathermap.org/api to obtain an appId.
 ## Usage
 
 ```jsx
-import WeatherWidget from 'jb-react-weather-widget'
+import { WeatherWidget } from "jb-react-weather-widget";
 ```
 
 ## Props
@@ -71,7 +71,7 @@ const theme = {
     outer: '16px' // padding of the container's element
   },
   borderRadius: {
-    container: '8px',
+    container: '8px', // you want 0 radius you have to put it explicitly, same below
     element: '8px
   }
 }

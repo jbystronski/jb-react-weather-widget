@@ -59,6 +59,10 @@ export default function useWidget(
     )
 
   const parseData = (weatherObject, locationObject) => {
+
+
+  
+
     const curr = weatherObject.current
 
     return {

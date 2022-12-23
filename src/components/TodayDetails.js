@@ -1,17 +1,17 @@
-import React from 'react'
-import { icons } from './icons'
-import { SvgIcon } from './SvgIcon'
+import React from "react";
+import { icons } from "./icons";
+import { SvgIcon } from "./SvgIcon";
 
-import TextSecondary from './TextSecondary'
+import TextSecondary from "./TextSecondary";
 
-import styled from '@emotion/styled'
+import styled from "styled-components";
 
-const Row = styled('div')`
+const Row = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 0.5rem;
-`
+`;
 
 export default function TodayDetails({
   sunrise,
@@ -22,38 +22,38 @@ export default function TodayDetails({
   min,
   units,
   iconColor,
-  fontColor
+  fontColor,
 }) {
   const list = [
     {
       icon: icons.sunrise,
-      val: sunrise
+      val: sunrise,
     },
     {
       icon: icons.sunset,
-      val: sunset
+      val: sunset,
     },
-    { icon: icons.temp, val: max + '/' + min },
+    { icon: icons.temp, val: max + "/" + min },
     {
       icon: icons.wind,
-      val: wind_speed + ' ' + units.speed
+      val: wind_speed + " " + units.speed,
     },
     {
       icon: icons.humidity,
-      val: humidity + '%'
-    }
-  ]
+      val: humidity + "%",
+    },
+  ];
 
   return (
     <div>
       {list.map(({ icon, val }, index) => (
         <Row key={index}>
-          <SvgIcon color={iconColor} path={icon} size='2rem' />
-          <TextSecondary color={fontColor} style={{ marginLeft: '0.7rem' }}>
+          <SvgIcon color={iconColor} path={icon} size="2rem" />
+          <TextSecondary color={fontColor} style={{ marginLeft: "0.7rem" }}>
             {val}
           </TextSecondary>
         </Row>
       ))}
     </div>
-  )
+  );
 }

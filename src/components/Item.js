@@ -1,7 +1,7 @@
-import styled from '@emotion/styled'
+import styled from "styled-components";
 
 const Item = styled.div`
-  padding: 16px;
-`
+  padding: 1rem;
+`;
 
-export default Item
+export default Item;

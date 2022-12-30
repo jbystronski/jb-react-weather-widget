@@ -1,57 +1,63 @@
-import React from 'react'
-import Main from './components/Main'
-import { defaultTheme } from './utils/defaultTheme'
+import React from "react";
+import { Main } from "./components/Main";
+import { defaultTheme } from "./utils/defaultTheme";
 
 export function WeatherWidget({
   theme,
-  apiKey,
-  longitude,
-  latitude,
-  units = 'metric'
+  units = {
+    temperature: "celsius",
+    speed: "kmh",
+  },
+  defaultLocation,
+  remember = false,
 }) {
   const {
     color: { font: defFonts, icon: defIcons },
     bg: defBg,
     spacing: defSpacing,
-    borderRadius: defRadius
-  } = defaultTheme
+    borderRadius: defRadius,
+  } = defaultTheme;
 
   const themeOverride = {
     color: {
       font: {
-        main: theme?.color?.font.main || defFonts.main,
-        timer: theme?.color?.font.timer || defFonts.timer,
-        bottom: theme?.color?.font.bottom || defFonts.bottom,
-        right: theme?.color?.font.right || defFonts.right
+        main: defFonts.main,
+        timer: defFonts.timer,
+        bottom: defFonts.bottom,
+        right: defFonts.right,
+        ...theme?.color?.font,
       },
       icon: {
-        main: theme?.color?.icon.main || defIcons.main,
-        right: theme?.color?.icon.right || defIcons.right,
-        bottom: theme?.color?.icon.bottom || defIcons.bottom
-      }
+        main: defIcons.main,
+        right: defIcons.right,
+        bottom: defIcons.bottom,
+        ...theme?.color?.icon,
+      },
     },
     bg: {
-      main: theme?.bg?.main || defBg.main,
-      right: theme?.bg?.right || defBg.right,
-      bottom: theme?.bg?.bottom || defBg.bottom
+      main: defBg.main,
+      right: defBg.right,
+      bottom: defBg.bottom,
+      ...theme?.bg,
     },
     spacing: {
-      inner: theme?.spacing?.inner || defSpacing.inner,
-      outer: theme?.spacing?.outer || defSpacing.outer
+      inner: defSpacing.inner,
+      outer: defSpacing.outer,
+      ...theme?.spacing,
     },
     borderRadius: {
-      container: theme?.borderRadius?.container || defRadius.container,
-      element: theme?.borderRadius?.element || defRadius.element
-    }
-  }
+      container: defRadius.container,
+      element: defRadius.element,
+      ...theme?.borderRadius,
+    },
+  };
 
   return (
     <Main
-      apiKey={apiKey}
-      longitude={longitude}
-      latitude={latitude}
       theme={themeOverride}
       units={units}
+      defaultLocation={defaultLocation}
+      remember={remember}
     />
-  )
+  );
 }

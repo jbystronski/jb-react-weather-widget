@@ -16,14 +16,10 @@ export default [
       {
         file: packageJson.module,
         format: "es",
-        sourcemap: dev,
-
-        // exports: "named",
       },
       {
         file: packageJson.main,
         format: "cjs",
-        sourcemap: dev,
       },
     ],
     plugins: [

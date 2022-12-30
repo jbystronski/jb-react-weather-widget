@@ -2,7 +2,9 @@ import React from "react";
 import { SvgIcon } from "./SvgIcon";
 import { mapIcons } from "../utils/mapIcons";
 import styled from "styled-components";
-import TextPrimary from "./TextPrimary";
+import { TextPrimary } from "./TextPrimary";
+
+import { useWeather } from "./WeatherWidget";
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +13,6 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   height: 100%;
-  min-height: 16rem;
 `;
 
 const Inner = styled.div`
@@ -21,35 +22,55 @@ const Inner = styled.div`
 
 const IconContainer = styled.div`
   margin-right: 1rem;
+  height: 9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Temperature = styled.h4`
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 0;
+  line-height: 100%;
 `;
 
-export default function Today({
-  description,
-  units,
-  temperature,
-  icon,
-  iconColor,
-  fontColor,
-}) {
+export const Today = () => {
+  const {
+    data: { daily, current_weather, tempSymbol },
+    temperature_unit,
+    theme: {
+      color: { font, icon },
+    },
+  } = useWeather();
+
   return (
     <Container>
       <Inner>
         <IconContainer>
-          <SvgIcon size="11rem" path={mapIcons(icon)} color={iconColor} />
+          <SvgIcon
+            size="7.5rem"
+            path={mapIcons(daily[0]["icon"])}
+            color={icon.main}
+          />
         </IconContainer>
         <div>
-          <Temperature style={{ color: fontColor }}>
-            {temperature}
-            <span style={{ fontSize: "2.5rem" }}>&#176;{units.temp}</span>
-          </Temperature>
-          <TextPrimary color={fontColor}>{description}</TextPrimary>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "center",
+            }}
+          >
+            <Temperature style={{ color: font.main }}>
+              {current_weather.temperature}
+              {tempSymbol}
+            </Temperature>
+          </div>
+
+          <TextPrimary color={font.main}>{daily[0]["description"]}</TextPrimary>
         </div>
       </Inner>
     </Container>
   );
-}
+};

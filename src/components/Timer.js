@@ -36,7 +36,7 @@ export const Timer = () => {
   }, [data.current_weather.time]);
 
   return (
-    <TextSecondary color={color.timer}>
+    <TextSecondary color={color.font.timer}>
       {pad(hrs)} : {pad(mins)} : {pad(seconds)}
     </TextSecondary>
   );

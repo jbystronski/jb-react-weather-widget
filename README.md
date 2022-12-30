@@ -78,31 +78,40 @@ import { WeatherWidget } from "jb-react-weather-widget";
 const theme = {
   color: {
     font: {
-      main: '#fff',
-      timer: '#fff',
-      bottom: '#fff',
-      right: '#fff'
+      main: "#fff",
+      timer: "#fff",
+      bottom: "#fff",
+      right: "#fff",
+      list: {
+        main: "#000",
+        hover: "#fff",
+      },
     },
     icon: {
-      main: '#e040fb',
-      right: '#e040fb',
-      bottom: '#e040fb'
-    }
+      main: "#e040fb",
+      right: "#e040fb",
+      bottom: "#e040fb",
+    },
   },
   bg: {
-    main: '#512da8',
-    right: 'rgba(0,0,0,0.1)',
-    bottom: 'rgba(0,0,0,0.1)'
+    main: "#512da8",
+    right: "rgba(0,0,0,0.1)",
+    bottom: "rgba(0,0,0,0.1)",
+    list: {
+      main: "#FFF",
+      hover: "transparent",
+      border: "#ccc",
+    },
   },
   spacing: {
-    inner: '16px', // The width, height of gaps between inner elements
-    outer: '16px' // padding of the container's element
+    inner: "16px", // The width, height of gaps between inner elements
+    outer: "16px", // padding of the container's element
   },
   borderRadius: {
-    container: '8px', // you want 0 radius you have to put it explicitly, same below
-    element: '8px
-  }
-}
+    container: "8px", // you want 0 radius you have to put it explicitly, same below
+    element: "8px",
+  },
+};
 ```
 
 ### License

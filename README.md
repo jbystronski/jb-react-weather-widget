@@ -22,24 +22,23 @@ This versions use openMeteo api, so no tokens neccessary. It also improves on fu
 
 #### props
 
-<p style="font-weight: bold; margin: 0;">units (object)</p>
-<span>temperature (string): celsius (default), fahrenheit</span>
-<br/>
-<span>speed (string): kmh (default), mph, kn, ms</span>
-<br/>
-<br/>
-<p style="font-weight: bold; margin: 0;">theme (object)</p>
-<span>Theme values to override default ones</span>
-<br/>
-<br/>
-<p style="font-weight: bold; margin: 0;">defaultLocation (string)</p>
-<span>A default existing place on Earth to take measurments from</span>
-<br/>
-<br/>
-<p style="font-weight: bold; margin: 0;">remember (boolean)</p>
-<span>Remember the next selected location as default (save to local storage). Default is false.</span>
-<br/>
-<br/>
+##### units (object)
+
+###### temperature (string): celsius (default) or fahrenheit
+
+###### speed (string): kmh (default), mph, kn or ms
+
+##### theme (object)
+
+###### Theme values to override default ones
+
+##### defaultLocation (string)
+
+###### A default place existing on Earth to take measurments from
+
+##### remember (boolean)
+
+###### Remember the next selected location as default (save to local storage). Default is false.
 
 ### versions 1.\*
 
@@ -47,24 +46,25 @@ This versions rely on openWeather api. You have to obtain a personal id token fr
 
 #### props
 
-<p style="font-weight: bold; margin: 0;">apiKey (string)</p>
-<span>Neccessary for the app to work</span>
-<br/>
-<br/>
-<p style="font-weight: bold; margin: 0;">longitude (number)</p>
-<span>Any valid longitude</span>
-<br/>
-<br/>
-<p style="font-weight: bold; margin: 0;">latitude (number)</p>
-<span>Any valid latitude</span>
-<br/>
-<br/>
-<p style="font-weight: bold; margin: 0;">units (string: metric (d), imperial)</p>
-<span>Measurement units based on your area's preferred system</span>
-<br/>
-<br/>
-<p style="font-weight: bold; margin: 0;">theme (object)</p>
-<span>Theme values to override default ones</span>
+##### apiKey (string)
+
+###### Neccessary for the app to work
+
+##### longitude (number)
+
+###### Any valid longitude
+
+##### latitude (number)
+
+###### Any valid latitude
+
+##### units (string: metric (default), imperial)
+
+###### Measurement units based on your area's preferred system
+
+##### theme (object)
+
+###### Theme values to override default ones
 
 ### Usage
 

@@ -4,47 +4,75 @@
 
 [![NPM](https://img.shields.io/npm/v/jb-react-weather-widget.svg)](https://www.npmjs.com/package/jb-react-weather-widget) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
+### Install
 
 ```bash
-npm install --save jb-react-weather-widget
+npm i jb-react-weather-widget
 
 or
 
 yarn add jb-react-weather-widget
 ```
 
-## Demo
+### version 2.\*
 
-"https://jbystronski.github.io/jb-react-weather-widget/"
+This versions use openMeteo api, so no tokens neccessary. It also improves on functionality, You should probably use this version.
 
-## Prerequisites
+<a style="font-size: 18px; font-weight: bold;" href="https://jbystronski.github.io/jb-react-weather-widget/">Demo</a>
 
-In order for this to work properly you have to allow location tracking in the browser.
+#### props
 
-Sign up with https://openweathermap.org/api to obtain an appId.
+<p style="font-weight: bold; margin: 0;">units (object)</p>
+<span>temperature (string): celsius (default), fahrenheit</span>
+<br/>
+<span>speed (string): kmh (default), mph, kn, ms</span>
+<br/>
+<br/>
+<p style="font-weight: bold; margin: 0;">theme (object)</p>
+<span>Theme values to override default ones</span>
+<br/>
+<br/>
+<p style="font-weight: bold; margin: 0;">defaultLocation (string)</p>
+<span>A default existing place on Earth to take measurments from</span>
+<br/>
+<br/>
+<p style="font-weight: bold; margin: 0;">remember (boolean)</p>
+<span>Remember the next selected location as default (save to local storage). Default is false.</span>
+<br/>
+<br/>
 
-## Usage
+### versions 1.\*
+
+This versions rely on openWeather api. You have to obtain a personal id token from https://openweathermap.org/api
+
+#### props
+
+<p style="font-weight: bold; margin: 0;">apiKey (string)</p>
+<span>Neccessary for the app to work</span>
+<br/>
+<br/>
+<p style="font-weight: bold; margin: 0;">longitude (number)</p>
+<span>Any valid longitude</span>
+<br/>
+<br/>
+<p style="font-weight: bold; margin: 0;">latitude (number)</p>
+<span>Any valid latitude</span>
+<br/>
+<br/>
+<p style="font-weight: bold; margin: 0;">units (string: metric (d), imperial)</p>
+<span>Measurement units based on your area's preferred system</span>
+<br/>
+<br/>
+<p style="font-weight: bold; margin: 0;">theme (object)</p>
+<span>Theme values to override default ones</span>
+
+### Usage
 
 ```jsx
 import { WeatherWidget } from "jb-react-weather-widget";
 ```
 
-## Props
-
-All props are optional. Follow the descriptions
-
-As a default, provided you have geolocation enabled in you browser settings and have passed a valid appId, the application will display information from your area but you can pass any valid longitude and latitude values.
-
-| Name      | type   | Options          | Default        | Description                                                                    |
-| --------- | ------ | ---------------- | -------------- | ------------------------------------------------------------------------------ |
-| apiKey    | string | -                | -              | Get from https://openweathermap.org, otherwise fallback data will be displayed |
-| longitude | int    | -                | fallback value | Any valid longitude                                                            |
-| latitude  | int    | -                | fallback value | Any valid latitude                                                             |
-| units     | string | metric, imperial | metric         | Measurement units based on your area preferred system                          |
-| theme     | object | -                | app theme      | You can pass your own theme object, see below                                  |
-
-## Styling
+### Styling
 
 ```jsx
 const theme = {
@@ -77,6 +105,6 @@ const theme = {
 }
 ```
 
-## License
+### License
 
 MIT © [jbystronski](https://github.com/jbystronski)

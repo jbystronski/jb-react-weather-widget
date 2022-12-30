@@ -1,38 +1,43 @@
-import React, { useState, useEffect } from 'react'
-import TextSecondary from './TextSecondary'
+import React, { useState, useEffect } from "react";
+import { TextSecondary } from "./TextSecondary";
+import { useWeather } from "./WeatherWidget";
+import { pad } from "../utils/formatTime";
 
-export function padDate(num) {
-  if (num !== null) {
-    var str = num.toString()
+export const Timer = () => {
+  const {
+    theme: { color },
+    data,
+  } = useWeather();
 
-    return str.length < 2 ? str.padStart(2, 0) : str
-  }
-}
-
-export default function Timer({ color }) {
-  const [seconds, setSeconds] = useState('00')
-  const [hrs, setHrs] = useState('00')
-  const [mins, setMins] = useState('00')
+  const [seconds, setSeconds] = useState("00");
+  const [hrs, setHrs] = useState("00");
+  const [mins, setMins] = useState("00");
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const date = new Date()
+      const d = new Date();
+      const offset =
+        d.getTime() +
+        data.utc_offset_seconds * 1000 +
+        d.getTimezoneOffset() * 60 * 1000;
 
-      const secs = date.getSeconds() + 1
-      setHrs(date.getHours())
-      setMins(date.getMinutes())
+      const time = new Date(offset);
 
-      setSeconds(secs)
-    }, 1000)
+      const secs = time.getSeconds() + 1;
+      setHrs(time.getHours());
+      setMins(time.getMinutes());
+
+      setSeconds(secs);
+    }, 1000);
 
     return () => {
-      clearInterval(timer)
-    }
-  }, [])
+      clearInterval(timer);
+    };
+  }, [data.current_weather.time]);
 
   return (
-    <TextSecondary color={color}>
-      {padDate(hrs)} : {padDate(mins)} : {padDate(seconds)}
+    <TextSecondary color={color.timer}>
+      {pad(hrs)} : {pad(mins)} : {pad(seconds)}
     </TextSecondary>
-  )
-}
+  );
+};

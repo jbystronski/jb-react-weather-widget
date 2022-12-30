@@ -25,6 +25,7 @@ export function WeatherWidget({
         timer: defFonts.timer,
         bottom: defFonts.bottom,
         right: defFonts.right,
+        list: defFonts.list,
         ...theme?.color?.font,
       },
       icon: {
@@ -38,6 +39,7 @@ export function WeatherWidget({
       main: defBg.main,
       right: defBg.right,
       bottom: defBg.bottom,
+      list: defBg.list,
       ...theme?.bg,
     },
     spacing: {

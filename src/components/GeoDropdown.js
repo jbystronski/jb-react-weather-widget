@@ -52,19 +52,20 @@ const List = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-  background: #fff;
-  color: ${(props) => props.color};
 `;
 
 const ListItem = styled.li`
   font-size: 0.845rem;
   color: inherit;
-  border-bottom: 1px solid #ccc;
+  background: ${(props) => props.bg};
+  color: ${(props) => props.color};
+  border-bottom: ${(props) => `1px solid ${props.borderColor}`};
   cursor: pointer;
   box-sizing: border-box;
   padding: 4px;
   &:hover {
-    background: #ccc;
+    background: ${(props) => props.bgHover};
+    color: "${(props) => props.colorHover};
   }
 `;
 
@@ -73,7 +74,7 @@ export const GeoDropdown = () => {
     handleSearch,
     gpsData,
     handleChangeLocation,
-    theme: { color, borderRadius },
+    theme: { color, bg, borderRadius },
   } = useWeather();
 
   const [value, setValue] = useState("");
@@ -124,10 +125,18 @@ export const GeoDropdown = () => {
         </IconsWrapper>
       </InputWrapper>
       {listVisible && gpsData && gpsData.length ? (
-        <List color={color.font.main}>
+        <List>
           {gpsData.map((location, index) => {
             return (
-              <ListItem onClick={() => handleListItemClick(index)} key={index}>
+              <ListItem
+                bg={bg.list.main}
+                bgHover={bg.list.hover}
+                color={color.font.list.main}
+                colorHover={color.font.list.hover}
+                borderColor={bg.list.border}
+                onClick={() => handleListItemClick(index)}
+                key={index}
+              >
                 {getFullLocation(location)}
               </ListItem>
             );

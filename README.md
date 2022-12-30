@@ -40,6 +40,10 @@ This versions use openMeteo api, so no tokens neccessary. It also improves on fu
 
 ###### Remember the next selected location as default (save to local storage). Default is false.
 
+##### refresh (number)
+
+###### Minutes between refreshing weather data, default is 60 (1 hour)
+
 ### versions 1.\*
 
 This versions rely on openWeather api. You have to obtain a personal id token from https://openweathermap.org/api

@@ -98,3 +98,7 @@ const theme = {
 #### License
 
 MIT © [jbystronski](https://github.com/jbystronski)
+
+#### See also
+
+<a href="https://github.com/jbystronski/jb-weather-widget">Vanilla js version</a>

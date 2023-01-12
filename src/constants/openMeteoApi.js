@@ -5,5 +5,4 @@ export const openMeteoApiParams = {
   longitude: "",
   current_weather: true,
   temperature_unit: "celsius",
-  // timezone: "",
 };

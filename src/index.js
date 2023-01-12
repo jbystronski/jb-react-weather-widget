@@ -10,6 +10,7 @@ export function WeatherWidget({
   },
   defaultLocation,
   remember = false,
+  refresh = 60,
 }) {
   const {
     color: { font: defFonts, icon: defIcons },
@@ -60,6 +61,7 @@ export function WeatherWidget({
       units={units}
       defaultLocation={defaultLocation}
       remember={remember}
+      refresh={refresh}
     />
   );
 }

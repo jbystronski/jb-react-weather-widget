@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import { Item } from "./Item";
 import { Timer } from "./Timer";
 import { Location } from "./Location";

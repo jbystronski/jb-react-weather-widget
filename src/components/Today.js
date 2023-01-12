@@ -3,7 +3,6 @@ import { SvgIcon } from "./SvgIcon";
 import { mapIcons } from "../utils/mapIcons";
 import styled from "styled-components";
 import { TextPrimary } from "./TextPrimary";
-
 import { useWeather } from "./WeatherWidget";
 
 const Container = styled.div`
@@ -68,7 +67,9 @@ export const Today = () => {
             </Temperature>
           </div>
 
-          <TextPrimary color={font.main}>{daily[0]["description"]}</TextPrimary>
+          <TextPrimary style={{ textAlign: "center" }} color={font.main}>
+            {daily[0]["description"]}
+          </TextPrimary>
         </div>
       </Inner>
     </Container>

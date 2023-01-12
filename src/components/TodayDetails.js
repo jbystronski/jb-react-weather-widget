@@ -1,11 +1,8 @@
 import React from "react";
-
 import { SvgIcon } from "./SvgIcon";
 import { mapIcons } from "../utils/mapIcons";
-
 import { TextSecondary } from "./TextSecondary";
 import { useWeather } from "./WeatherWidget";
-
 import styled from "styled-components";
 
 const Row = styled("div")`
@@ -25,28 +22,24 @@ export const TodayDetails = () => {
   const list = [
     {
       icon: "sunrise",
-      val: daily[0].sunrise + " (sunrise)",
+      val: `${daily[0].sunrise} (sunrise)`,
     },
     {
       icon: "sunset",
-      val: daily[0].sunset + " (sunset)",
+      val: `${daily[0].sunset} (sunset)`,
     },
     {
       icon: "temp_max",
-      val: "max temperature " + daily[0].temp_max + tempSymbol,
+      val: `max temperature ${daily[0].temp_max}${tempSymbol}`,
     },
     {
       icon: "temp_min",
-      val: "min temperature " + daily[0].temp_min + tempSymbol,
+      val: `min temperature ${daily[0].temp_min}${tempSymbol}`,
     },
     {
       icon: "wind",
-      val: `wind speed ${current_weather.windspeed} ${windspeed_unit}`,
+      val: `wind speed ${current_weather.windspeed}${windspeed_unit}`,
     },
-    // {
-    //   icon: icons.humidity,
-    //   val: humidity + "%",
-    // },
   ];
 
   return (

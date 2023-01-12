@@ -1,4 +1,4 @@
-const keys = ["location", "country", "admin1", "admin2"];
+const keys = ["name", "country", "admin1", "admin2"];
 
 export const getFullLocation = (locationDataObject) => {
   return Object.keys(locationDataObject)

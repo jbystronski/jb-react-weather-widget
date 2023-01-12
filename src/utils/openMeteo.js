@@ -1,4 +1,4 @@
-import { getWeekdayMonthYear, getHoursMinutesSeconds } from "./formatTime";
+import { getWeekdayMonthYear, getHoursMinutes } from "./formatTime";
 
 const weatherCodes = {
   0: ["Clear sky", "clear_d"],
@@ -44,33 +44,35 @@ export const openMeteo = {
     windspeed_unit: "kmh",
   },
   responseParser: (responseData) => {
-    responseData.current_weather["description"] =
-      weatherCodes[responseData?.current_weather?.weathercode][0];
-    responseData.tempSymbol = responseData.daily_units.temperature_2m_max;
-    responseData.daily = responseData.daily.time.map((_, index) => {
+    const $ = responseData;
+
+    $.current_weather["description"] =
+      weatherCodes[$?.current_weather?.weathercode][0];
+    $.tempSymbol = $?.daily_units.temperature_2m_max;
+
+    const currentTime = new Date($.current_weather.time);
+    const isDay =
+      currentTime > new Date($?.daily["sunrise"][0]) &&
+      currentTime < new Date($?.daily["sunset"][0]);
+
+    $.daily = $?.daily.time.map((el, index) => {
       return {
-        description: weatherCodes[responseData.daily.weathercode[index]][0],
-        temp_max: responseData.daily.temperature_2m_max[index],
-        temp_min: responseData.daily.temperature_2m_min[index],
-        time: getWeekdayMonthYear(new Date(responseData.daily.time[index])),
-        icon: weatherCodes[responseData.daily.weathercode[index]][1],
-        sunset: getHoursMinutesSeconds(
-          new Date(responseData.daily.sunset[index])
-        ),
-        sunrise: getHoursMinutesSeconds(
-          new Date(responseData.daily.sunrise[index])
-        ),
+        description: weatherCodes[$?.daily.weathercode[index]][0],
+        temp_max: $?.daily.temperature_2m_max[index],
+        temp_min: $?.daily.temperature_2m_min[index],
+        time: getWeekdayMonthYear(new Date($?.daily.time[index])),
+        icon: weatherCodes[$?.daily.weathercode[index]][1],
+        sunset: getHoursMinutes(new Date($?.daily.sunset[index])),
+        sunrise: getHoursMinutes(new Date($?.daily.sunrise[index])),
       };
     });
 
-    if (
-      responseData.current_weather.time >= responseData.daily[0]["sunset"] &&
-      responseData.daily[0]["icon"].endsWith("_d")
-    ) {
-      responseData.daily[0]["icon"] =
-        responseData.daily[0]["icon"].slice(0, -2) + "_n";
+    const mainIcon = $?.daily[0]["icon"];
+
+    if (!isDay && mainIcon.endsWith("_d")) {
+      $.daily[0]["icon"] = mainIcon.slice(0, -2) + "_n";
     }
 
-    return responseData;
+    return $;
   },
 };

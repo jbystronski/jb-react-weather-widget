@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useWeather } from "./WeatherWidget";
-
 import { Item } from "./Item";
 
 const Component = styled(Item)`

@@ -8,24 +8,17 @@ export const useWeatherApi = (providerName) => {
   useEffect(() => {
     if (weatherInputData === null) return;
 
-    let api = apiProviders[providerName];
+    let { url, responseParser } = apiProviders[providerName];
 
-    if (!api || !api["url"] || typeof api["responseParser"] !== "function")
-      return;
-
-    new Promise((resolve) =>
-      resolve(
-        fetch(
-          api["url"] +
-            Object.keys(weatherInputData)
-              .map((key) => `${key}=${weatherInputData[key]}`)
-              .join("&")
-        )
-      )
+    fetch(
+      url +
+        Object.keys(weatherInputData)
+          .map((key) => `${key}=${weatherInputData[key]}`)
+          .join("&")
     )
       .then((result) => result.json())
       .then((result) => {
-        setWeatherResultData(api["responseParser"].call(null, result));
+        setWeatherResultData(responseParser(result));
       })
       .catch(console.error);
   }, [weatherInputData, apiProviders, providerName]);

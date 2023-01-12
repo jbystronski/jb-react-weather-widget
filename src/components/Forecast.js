@@ -1,7 +1,6 @@
 import React from "react";
 import { mapIcons } from "../utils/mapIcons";
 import { SvgIcon } from "./SvgIcon";
-import { TextPrimary } from "./TextPrimary";
 import { TextSecondary } from "./TextSecondary";
 import { Item } from "./Item";
 import styled from "styled-components";
@@ -23,7 +22,7 @@ const IconWrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
-  height: 3rem;
+  height: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;

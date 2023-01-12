@@ -22,9 +22,13 @@ export const getWeekdayMonthYear = (time) =>
   ", " +
   time.getFullYear();
 
-export const getHoursMinutesSeconds = (time) =>
-  pad(time.getHours()) +
-  ":" +
-  pad(time.getMinutes()) +
-  ":" +
-  pad(time.getSeconds());
+export const getHoursMinutes = (time) =>
+  pad(time.getHours()) + ":" + pad(time.getMinutes());
+
+export const getTimezoneCurrentTime = (offsetSeconds) => {
+  const d = new Date();
+
+  return new Date(
+    d.getTime() + offsetSeconds * 1000 + d.getTimezoneOffset() * 60 * 1000
+  );
+};

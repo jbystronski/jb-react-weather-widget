@@ -1,8 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import { TextPrimary } from "./TextPrimary";
 import { TextSecondary } from "./TextSecondary";
-import { Timer } from "./Timer";
 import { useWeather } from "./WeatherWidget";
 import { getFullLocation } from "../utils/getFullLocation";
 

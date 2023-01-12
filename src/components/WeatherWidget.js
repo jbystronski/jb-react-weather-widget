@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useGpsApi } from "../utils/useGpsApi";
 import { useWeatherApi } from "../utils/useWeatherApi";
-import { geocodingApiParams } from "../constants/geocodingApi";
 import { apiProviders } from "../utils/apiProviders";
 import { getSpeedUnit, getTempUnit } from "../utils/getUnits";
+import { randomLocations } from "../constants/randomLocations";
+import { autodetectLocation } from "../utils/autodectLocation";
+import { useLocalStorage } from "../utils/useLocalStorage";
+import { localStorageKey } from "../constants/localStorageKey";
+import { getGpsData } from "../utils/getGpsData";
 
 export const WeatherContext = createContext();
 
@@ -13,61 +16,65 @@ export const WeatherWidget = ({
   units,
   children,
   remember,
+  refresh,
 }) => {
-  const { gpsData, setGpsInputData } = useGpsApi();
   const { weatherResultData, setWeatherInputData } = useWeatherApi("openMeteo");
 
+  const { isStored, getStored, saveToLocalStorage } =
+    useLocalStorage(localStorageKey);
+
+  const [gpsData, setGpsData] = useState(null);
   const [location, setLocation] = useState(null);
 
   const temperature_unit = getTempUnit(units?.temperature);
   const windspeed_unit = getSpeedUnit(units?.speed);
-
-  const localKey = "weatherWidgetStoredLocation";
 
   const handleChangeLocation = (index) => {
     if (!gpsData) return;
 
     setLocation(gpsData[index]);
 
-    if (remember && localStorage) {
-      localStorage.setItem(localKey, JSON.stringify(gpsData[index]));
-    }
+    if (remember) saveToLocalStorage(gpsData[index]);
   };
 
   const handleSearch = (v) => {
-    setGpsInputData({ ...geocodingApiParams, name: v });
+    getGpsData({ name: v }).then(setGpsData);
   };
 
   useEffect(() => {
-    setGpsInputData({
-      ...geocodingApiParams,
-      count: 1,
-      name: defaultLocation,
-    });
-  }, []);
-
-  useEffect(() => {
-    if (gpsData && location === null) {
-      if (remember && localStorage && localStorage.getItem(localKey)) {
-        setLocation(JSON.parse(localStorage.getItem(localKey)));
-      } else {
-        setLocation(gpsData[0]);
-      }
+    switch (true) {
+      case isStored():
+        return setLocation(getStored());
+      default:
+        getGpsData({
+          count: 1,
+          name:
+            defaultLocation ||
+            randomLocations[Math.floor(Math.random() * randomLocations.length)],
+        }).then((result) => setLocation(result[0]));
     }
-  }, [gpsData, location, remember]);
+  }, [defaultLocation, randomLocations]);
+
+  const handleSetWeatherInputData = ({ longitude, latitude, timezone }) => {
+    setWeatherInputData({
+      ...apiProviders["openMeteo"]["requestParams"],
+      longitude,
+      latitude,
+      timezone,
+      temperature_unit,
+      windspeed_unit,
+    });
+  };
 
   useEffect(() => {
     if (location) {
-      const { longitude, latitude, timezone } = location;
+      handleSetWeatherInputData(location);
 
-      setWeatherInputData({
-        ...apiProviders["openMeteo"]["requestParams"],
-        longitude,
-        latitude,
-        timezone,
-        temperature_unit,
-        windspeed_unit,
-      });
+      const interval = setInterval(() => {
+        handleSetWeatherInputData(location);
+      }, refresh * 100 * 1000);
+
+      return () => clearInterval(interval);
     }
   }, [location]);
 
@@ -79,7 +86,6 @@ export const WeatherWidget = ({
         gpsData,
         handleChangeLocation,
         data: weatherResultData,
-        defaultLocation,
         temperature_unit,
         windspeed_unit,
         location,

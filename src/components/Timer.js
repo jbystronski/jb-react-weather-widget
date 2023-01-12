@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { TextSecondary } from "./TextSecondary";
 import { useWeather } from "./WeatherWidget";
-import { pad } from "../utils/formatTime";
+import { pad, getTimezoneCurrentTime } from "../utils/formatTime";
 
 export const Timer = () => {
   const {
@@ -15,13 +15,7 @@ export const Timer = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const d = new Date();
-      const offset =
-        d.getTime() +
-        data.utc_offset_seconds * 1000 +
-        d.getTimezoneOffset() * 60 * 1000;
-
-      const time = new Date(offset);
+      const time = getTimezoneCurrentTime(data.utc_offset_seconds);
 
       const secs = time.getSeconds() + 1;
       setHrs(time.getHours());

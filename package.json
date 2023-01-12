@@ -5,7 +5,7 @@
   "author": "jbystronski",
   "license": "MIT",
   "repository": "jbystronski/jb-react-weather-widget",
-  "homepage": "https://jbystronski.github.io/jb-react-weather-widget/",
+  "homepage": "https://jb-weather-widget.surge.sh",
   "main": "dist/main.cjs.js",
   "module": "dist/main.esm.js",
   "files": [

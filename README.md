@@ -1,10 +1,12 @@
-# jb-react-weather-widget
-
-> Weather widget to use with your react app.
-
 [![NPM](https://img.shields.io/npm/v/jb-react-weather-widget.svg)](https://www.npmjs.com/package/jb-react-weather-widget) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-### Install
+# jb-react-weather-widget
+
+Weather widget to use with a React app
+
+<a href="https://jb-weather-widget.surge.sh">Demo</a>
+
+#### Installation
 
 ```bash
 npm i jb-react-weather-widget
@@ -14,69 +16,44 @@ or
 yarn add jb-react-weather-widget
 ```
 
-### version 2.\*
-
-This versions use openMeteo api, so no tokens neccessary. It also improves on functionality, You should probably use this version.
-
-<a style="font-size: 18px; font-weight: bold;" href="https://jbystronski.github.io/jb-react-weather-widget/">Demo</a>
-
-#### props
-
-##### units (object)
-
-###### temperature (string): celsius (default) or fahrenheit
-
-###### speed (string): kmh (default), mph, kn or ms
-
-##### theme (object)
-
-###### Theme values to override default ones
-
-##### defaultLocation (string)
-
-###### A default place existing on Earth to take measurments from
-
-##### remember (boolean)
-
-###### Remember the next selected location as default (save to local storage). Default is false.
-
-##### refresh (number)
-
-###### Minutes between refreshing weather data, default is 60 (1 hour)
-
-### versions 1.\*
-
-This versions rely on openWeather api. You have to obtain a personal id token from https://openweathermap.org/api
-
-#### props
-
-##### apiKey (string)
-
-###### Neccessary for the app to work
-
-##### longitude (number)
-
-###### Any valid longitude
-
-##### latitude (number)
-
-###### Any valid latitude
-
-##### units (string: metric (default), imperial)
-
-###### Measurement units based on your area's preferred system
-
-##### theme (object)
-
-###### Theme values to override default ones
-
-### Usage
+#### Usage
 
 ```jsx
 import { WeatherWidget } from "jb-react-weather-widget";
 ```
 
-### Styling
+#### Version 2.\*
+
+This versions use openMeteo api, so no tokens neccessary. It also improves on functionality, You should probably use this version.
+
+##### Props
+
+<ul>
+     <li><span style="font-weight: bold;">units</span><br/><span>mesurement units, temperature (celsius - default, fahrenheit), speed (kmh - default, mph, kn, ms)</span></li>
+       <li><span style="font-weight: bold;">remember</span><br/><span>stores current choice inside local storage, default is false</span></li>
+        <li><span style="font-weight: bold;">refresh</span><br/><span>weather data refetch time in minutes, default is 60</span></li>
+         <li><span style="font-weight: bold;">defaultLocation</span><br/><span>a default place existing on Earth to take measurments from, if not provided a random place gets selected</span></li>
+          <li><span style="font-weight: bold;">theme</span><br/><span>custom theme to override the default one</span></li>
+</ul>
+
+#### Versions 1.\* (deprecated)
+
+This versions rely on openWeather api. You have to obtain a personal id token from https://openweathermap.org/api
+
+##### Props
+
+<ul>
+     <li><span style="font-weight: bold;">apiKey (required)</span><br/><span>individual access token required by the api</span></li>
+      <li><span style="font-weight: bold;">longitude (required)</span><br/><span>any valid longitude value</span></li>
+         <li><span style="font-weight: bold;">latitude (required)</span><br/><span>any valid latidute value</span></li>
+       <li><span style="font-weight: bold;">units</span><br/><span>measurment units systtem (metric, imperial), default is metric</span></li>
+         <li><span style="font-weight: bold;">theme</span><br/><span>custom theme to override the default one</span></li>
+      
+</ul>
+
+#### Styling
+
+Pass a theme object with your preferred values
 
 ```jsx
 const theme = {
@@ -118,6 +95,6 @@ const theme = {
 };
 ```
 
-### License
+#### License
 
 MIT © [jbystronski](https://github.com/jbystronski)
